@@ -6,12 +6,12 @@
 
 PROFILES = {
     "chrome.exe": {
-        "rate" : (40, 200), # rate lo/hi
+        "rate" : (40, 200), # rate lo/hi, packets/s
         "size" : (54, 1514), # size lo/hi
         "in_ratio": 0.75, # incoming ratio
         "protocol": [("tcp", 0.9), ("udp", 0.1)], #weighted protocol chooser
         "ports" : [443, 443, 443, 80], #ports
-        "burst": {"chance": 0.15, "duration": (1,4), "mult": 5}, #burst are sudden spikes in traffic: rate * mult
+        "burst": {"chance": 0.15, "dur": (1,4), "mult": 5}, #burst are sudden spikes in traffic: rate * mult
         "dns": ["youtube.com", "google.com", "github.com", "wikipedia.org"], #dns list
     },
 
@@ -21,7 +21,7 @@ PROFILES = {
         "in_ratio": 0.5,
         "protocol": [("udp", 1.0)],
         "ports" : [443, 50001, 50002],
-        "burst": {"chance": 0.02, "duration": (2,3), "mult": 2},
+        "burst": {"chance": 0.02, "dur": (2,3), "mult": 2},
         "dns": ["discord.com", "gateway.discord.gg"],
     },
 
@@ -31,7 +31,7 @@ PROFILES = {
         "in_ratio": 0.95,
         "protocol": [("tcp", 1.0)],
         "ports" : [443, 27015, 27036],
-        "burst": {"chance": 0.05, "duration": (10,40), "mult": 100},
+        "burst": {"chance": 0.05, "dur": (10,40), "mult": 100},
         "dns": ["steamcontent.com", "steampowered.com"],
     },
 
@@ -39,7 +39,7 @@ PROFILES = {
         "rate": (5, 25),
         "size": (54, 1514),
         "in_ratio": 0.9,
-        "protos": [("tcp", 1.0)],
+        "protocol": [("tcp", 1.0)],
         "ports": [443, 4070],
         "burst": {"chance": 0.04, "dur": (2, 4), "mult": 8},
         "dns": ["spclient.wg.spotify.com", "scdn.co"],
@@ -49,7 +49,7 @@ PROFILES = {
         "rate": (2, 15),
         "size": (54, 700),
         "in_ratio": 0.6,
-        "protos": [("tcp", 0.7), ("udp", 0.3)],
+        "protocol": [("tcp", 0.7), ("udp", 0.3)],
         "ports": [443, 123, 53],
         "burst": {"chance": 0.01, "dur": (10, 30), "mult": 20},
         "dns": ["windowsupdate.com", "microsoft.com", "time.windows.com"],
@@ -59,7 +59,7 @@ PROFILES = {
         "rate": (30, 120),
         "size": (50, 250),
         "in_ratio": 0.5,
-        "protos": [("udp", 1.0)],
+        "protocol": [("udp", 1.0)],
         "ports": [27015, 27016, 27020],
         "burst": None,
         "dns": [],
@@ -69,7 +69,7 @@ PROFILES = {
         "rate": (0, 5),
         "size": (54, 1514),
         "in_ratio": 0.3,
-        "protos": [("tcp", 1.0)],
+        "protocol": [("tcp", 1.0)],
         "ports": [443],
         "burst": {"chance": 0.01, "dur": (5, 15), "mult": 30},
         "dns": ["onedrive.live.com"],
@@ -79,7 +79,7 @@ PROFILES = {
         "rate": (0, 10),
         "size": (54, 400),
         "in_ratio": 0.5,
-        "protos": [("tcp", 0.6), ("udp", 0.4)],
+        "protocol": [("tcp", 0.6), ("udp", 0.4)],
         "ports": [443, 80, 5353],
         "burst": None,
         "dns": [],

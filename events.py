@@ -19,4 +19,4 @@ class ConnEvent(NamedTuple):
 class DnsEvent(NamedTuple):
     time_s : float
     process : str | None
-    name : str
+    request_name : str
