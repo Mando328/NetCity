@@ -127,26 +127,6 @@ def run(q, stop):
         traceback.print_exc()
 
 
-if __name__ == "__main__":
-    from collections import Counter
-
-#    q = queue.Queue(maxsize=50000)
-#    stop = start_fake_collector(q)
-#    time.sleep(5)
-#    stop.set()
-#
-#    collected_events = []
-#    while True:
-#        try:
-#            collected_events.append(q.get_nowait())
-#        except queue.Empty:
-#            break
-#
-#    print("razem:", len(collected_events), "(~", len(collected_events) // 5, "na sekundę)")
-#    print(Counter(type(event).__name__ for event in collected_events))
-#    print(Counter(event.process for event in collected_events if isinstance(event, PacketEvent)).most_common())
 
 
-    for process_name, profile in PROFILES.items():
-        if profile["dns"]:
-            print(make_dns(process_name, profile))
+
