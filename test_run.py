@@ -39,7 +39,7 @@ if __name__ == "__main__":
                 b_in_ps = b_in / dt
                 b_out_ps = b_out / dt
 
-            print(f"procesy={len(summ['processes'])} pakiety={packets} zdarzenia={len(summ['events'])} in : {b_in_ps:.0f} B/s, out: {b_out_ps:.0f} B/s")
+            print(f"processes={len(summ['processes'])} packets={packets} events={len(summ['events'])} in : {b_in_ps:.0f} B/s, out: {b_out_ps:.0f} B/s")
             next_t += TICK
             last = now
     except KeyboardInterrupt:
