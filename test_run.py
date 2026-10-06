@@ -15,6 +15,7 @@ if __name__ == "__main__":
     agg = Aggregator(q)
     next_t = time.monotonic() + TICK
     t.start()
+    
     try:
         while True:
             packets = 0
@@ -25,8 +26,6 @@ if __name__ == "__main__":
                 time.sleep(delay)
             now = time.monotonic()
             dt = now - last
-
-
 
             summ = agg.flush() # summ as in summary
             
@@ -42,8 +41,10 @@ if __name__ == "__main__":
             print(f"processes={len(summ['processes'])} packets={packets} events={len(summ['events'])} in : {b_in_ps:.0f} B/s, out: {b_out_ps:.0f} B/s")
             next_t += TICK
             last = now
+
     except KeyboardInterrupt:
         pass
+
     finally:
         stop.set()
 
