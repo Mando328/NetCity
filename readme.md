@@ -15,11 +15,11 @@ Backend is going to be written in python with frontend written probably in js.
 
 
 ### What is done? 
-Nothing tbh
+Backend minus the network listener
 
 ### What am I working on? 
 
-For now I am developing the backend of the app
+Frontend!
 
 
 
