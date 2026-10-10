@@ -4,7 +4,7 @@ import json
 import queue
 import threading
 import time
-from aggregator import *
+from aggregator import Aggregator
 import fake
 
 
