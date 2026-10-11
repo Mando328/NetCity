@@ -26,3 +26,5 @@ Frontend!
 ###  Ai usage
 Used Ai to generate the project logo and banner and to help me to structure my work 
 
+<img src ="https://hackatime.hackclub.com/api/v1/badge/U096KJM1S6N/Mando328/NetCity">  <img src ="https://img.shields.io/badge/stability-wip-lightgrey.svg">   
+
