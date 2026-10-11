@@ -1,6 +1,8 @@
 import math
 import time
 
+DIM_GRACE = 10
+
 def getGridPosition(index):
     ring = math.ceil((math.sqrt(index + 2) - 1) / 2)
     firstIndexInRing = 4 * (ring - 1) * ring
@@ -65,30 +67,36 @@ class City:
         for process in snapshot["processes"]:
             self.process_last_seen[process] = now
         for event in snapshot["events"]:
-            if event.get("kind") == "open" :
-                if (event["process"], event["remote_ip"]) in self.ip_to_cell:
-                    cp = self.ip_to_cell[event["process"], event["remote_ip"]]
-                    c = self.cell_dict[(cp)]
-                    c.connections += 1
+            kind = event.get("kind")
+            key = (event["process"], event["remote_ip"])
+            if kind == "open":
+                if key in self.ip_to_cell:
+                    c = self.cell_dict[self.ip_to_cell[key]]
                 else:
-                    self.add_cell(event["process"], event["remote_ip"])
-            elif event.get("kind") == "close":
-                if (event["process"], event["remote_ip"]) in self.ip_to_cell:
-                    cp = self.ip_to_cell[event["process"], event["remote_ip"]]
-                    c = self.cell_dict[(cp)]
+                    c = self.add_cell(*key)
+                c.connections += 1
+                if c.state != "active":
+                    c.state = "active"
+                    c.state_changed_at = now
+            elif kind == "close":
+                if key in self.ip_to_cell:
+                    c = self.cell_dict[self.ip_to_cell[key]]
                     if c.connections != 0:
                         c.connections -= 1
                         if c.connections == 0:
-                            c.state_changed_at = time.monotonic()
                             c.state = "dimming"
+                            c.state_changed_at = now
 
-                    
+
+    def tick(self):
+      now = time.monotonic()
+      for c in self.cell_dict.values():  
+        if c.state == "dimming":
+            if now - c.state_changed_at > DIM_GRACE:
+                c.state = "ruin"
+                c.state_changed_at = now
+            
 
     
 
 
-if __name__ == "__main__":
-    city = City()
-    for i in range(25):
-        city.add_cell(i, i)
-    print(city.cell_dict)
